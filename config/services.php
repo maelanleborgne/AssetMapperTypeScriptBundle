@@ -37,7 +37,7 @@ return static function (ContainerConfigurator $container) {
             ->args([
                 abstract_arg('path to typescript source dir'),
                 abstract_arg('path to typescript output directory'),
-                service('sensiolabs_typescript.builder'),
+                abstract_arg('path to project root directory'),
             ])
         ->set('sensiolabs_typescript.public_asset_path_resolver', TypeScriptPublicPathAssetPathResolver::class)
             ->decorate('asset_mapper.public_assets_path_resolver')

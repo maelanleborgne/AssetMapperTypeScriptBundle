@@ -81,9 +81,9 @@ The first time you run one of the TypeScript commands, the bundle will download
 the correct SWC binary for your system into the ``var/`` directory.
 
 When you run ``typescript:build``, that binary is used to compile TypeScript files
-into a ``var/typescript/`` directory. Finally, when the contents of ``assets/typescript/app.ts``
-is requested, the bundle swaps the contents of that file with the contents of
-the ``var/typescript/`` directory.
+into the ``compile_dir`` (default: ``%kernel.project_dir%/var/typescript``) directory. Finally, when the contents of
+``assets/typescript/app.ts`` is requested, the bundle swaps the contents of that file with the contents of
+the ``compile_dir`` directory.
 
 Configuration
 -------------
