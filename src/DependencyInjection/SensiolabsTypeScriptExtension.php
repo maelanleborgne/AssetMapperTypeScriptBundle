@@ -27,7 +27,7 @@ class SensiolabsTypeScriptExtension extends Extension implements ConfigurationIn
 
         $container->findDefinition('sensiolabs_typescript.builder')
             ->replaceArgument(0, $config['source_dir'])
-            ->replaceArgument(1, '%kernel.project_dir%/var/typescript')
+            ->replaceArgument(1, $config['compile_dir'])
             ->replaceArgument(3, $config['binary_download_dir'])
             ->replaceArgument(4, $config['swc_binary'])
             ->replaceArgument(5, $config['swc_config_file'])
@@ -35,7 +35,7 @@ class SensiolabsTypeScriptExtension extends Extension implements ConfigurationIn
         ;
         $container->findDefinition('sensiolabs_typescript.js_asset_compiler')
             ->replaceArgument(0, $config['source_dir'])
-            ->replaceArgument(1, '%kernel.project_dir%/var/typescript')
+            ->replaceArgument(1, $config['compile_dir'])
             ->replaceArgument(2, '%kernel.project_dir%')
         ;
     }
@@ -67,6 +67,10 @@ class SensiolabsTypeScriptExtension extends Extension implements ConfigurationIn
                 ->scalarNode('binary_download_dir')
                     ->info('The directory where the SWC binary will be downloaded')
                     ->defaultValue('%kernel.project_dir%/var')
+                ->end()
+                ->scalarNode('compile_dir')
+                    ->info('The directory where the compiled JavaScript files will be stored')
+                    ->defaultValue('%kernel.project_dir%/var/typescript')
                 ->end()
                 ->scalarNode('swc_binary')
                     ->info('The SWC binary to use')
