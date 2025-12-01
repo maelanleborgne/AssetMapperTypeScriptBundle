@@ -42,7 +42,7 @@ jobs:
             php: 8.4
             deps: high
           - symfony-version: 8.0
-            php: 8.4
+            php: 8.5
             deps: high
     steps:
       - uses: actions/checkout@v3
