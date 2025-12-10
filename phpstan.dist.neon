@@ -4,4 +4,4 @@ parameters:
         - src/
         - tests/
 includes:
-    - vendor/phpstan/phpstan-symfony/extension.neon
+    - tools/phpstan/vendor/phpstan/phpstan-symfony/extension.neon

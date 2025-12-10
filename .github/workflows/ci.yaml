@@ -77,12 +77,16 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.3
-          tools: php-cs-fixer
+          php-version: 8.5
+
+      - name: Install Composer dependencies
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+      - name: Install PHP-CS-Fixer dependencies
+        run: composer install --no-progress --prefer-dist --optimize-autoloader --working-dir=tools/php-cs-fixer
 
       - name: Run PHP-CS-Fixer
-        run:
-          php-cs-fixer fix --dry-run --diff
+        run: tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --diff --dry-run
 
   phpstan:
     name: PHPStan
@@ -94,11 +98,13 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.3
-          tools: phpstan
+          php-version: 8.5
 
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
+      - name: Install PHPStan dependencies
+        run: composer install --no-progress --prefer-dist --optimize-autoloader --working-dir=tools/phpstan
+
       - name: Run PHPStan
-        run: vendor/bin/phpstan analyse
+        run: tools/phpstan/vendor/bin/phpstan analyse

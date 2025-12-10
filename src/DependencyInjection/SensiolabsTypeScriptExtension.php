@@ -2,7 +2,6 @@
 
 namespace Sensiolabs\TypeScriptBundle\DependencyInjection;
 
-use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\FileLocator;
@@ -48,12 +47,14 @@ class SensiolabsTypeScriptExtension extends Extension implements ConfigurationIn
         return $this;
     }
 
+    /**
+     * @return TreeBuilder<'array'>
+     */
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('sensiolabs_typescript');
 
         $rootNode = $treeBuilder->getRootNode();
-        \assert($rootNode instanceof ArrayNodeDefinition);
 
         $rootNode
             ->children()
